@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-eye"></i>
+                <h1>Object Detection</h1>
+            </div>
+            <p class="subtitle">AI-Powered Object Detection using YOLO & RCNN</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="camera">
+                        <i class="fas fa-camera"></i>
+                        Camera
+                    </button>
+                    <button class="tab-btn" data-tab="upload">
+                        <i class="fas fa-upload"></i>
+                        Upload Image
+                    </button>
+                </div>
+
+                <!-- Camera Tab -->
+                <div class="tab-content active" id="camera-tab">
+                    <div class="camera-container">
+                        <video id="camera-feed" autoplay muted></video>
+                        <canvas id="camera-canvas" style="display: none;"></canvas>
+                        <div class="camera-controls">
+                            <button id="start-camera" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Camera
+                            </button>
+                            <button id="capture-frame" class="btn btn-secondary" disabled>
+                                <i class="fas fa-camera"></i>
+                                Capture & Detect
+                            </button>
+                            <button id="stop-camera" class="btn btn-danger" disabled>
+                                <i class="fas fa-stop"></i>
+                                Stop Camera
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Tab -->
+                <div class="tab-content" id="upload-tab">
+                    <div class="upload-container">
+                        <div class="upload-area" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & Drop an image here or click to browse</p>
+                            <input type="file" id="file-input" accept="image/*" hidden>
+                        </div>
+                        <div class="upload-preview" id="upload-preview" style="display: none;">
+                            <img id="preview-image" alt="Preview">
+                            <button id="detect-upload" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                Detect Objects
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2>Detection Results</h2>
+                <div class="results-container">
+                    <div class="result-card">
+                        <h3>YOLO Detection</h3>
+                        <div class="result-image">
+                            <canvas id="yolo-canvas"></canvas>
+                        </div>
+                        <div class="detection-info" id="yolo-info">
+                            <p>No detections yet</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>RCNN Detection</h3>
+                        <div class="result-image">
+                            <canvas id="rcnn-canvas"></canvas>
+                        </div>
+                        <div class="detection-info" id="rcnn-info">
+                            <p>No detections yet</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Hybrid Detection</h3>
+                        <div class="result-image">
+                            <canvas id="hybrid-canvas"></canvas>
+                        </div>
+                        <div class="detection-info" id="hybrid-info">
+                            <p>No detections yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Processing image...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Object Detection Web App. Built with ❤️ using AI</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="script.js"></script>
+</body>
+</html>

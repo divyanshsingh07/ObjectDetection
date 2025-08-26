@@ -80,6 +80,10 @@ function setupEventListeners() {
     uploadArea.addEventListener('drop', handleDrop);
     fileInput.addEventListener('change', handleFileSelect);
     detectUploadBtn.addEventListener('click', () => detectObjects(previewImage));
+    
+    // New image management buttons
+    document.getElementById('change-image').addEventListener('click', changeImage);
+    document.getElementById('remove-image').addEventListener('click', removeImage);
 }
 
 // Camera functions
@@ -176,6 +180,31 @@ function handleFile(file) {
         uploadPreview.style.display = 'block';
     };
     reader.readAsDataURL(file);
+}
+
+// New image management functions
+function changeImage() {
+    // Trigger file input click to select a new image
+    fileInput.click();
+    showNotification('Select a new image', 'info');
+}
+
+function removeImage() {
+    // Clear the current image and show upload area
+    previewImage.src = '';
+    uploadPreview.style.display = 'none';
+    uploadArea.style.display = 'block';
+    
+    // Clear file input
+    fileInput.value = '';
+    
+    // Clear detection results
+    clearCanvases();
+    updateInfo('No detections yet', 'yolo');
+    updateInfo('No detections yet', 'rcnn');
+    updateInfo('No detections yet', 'hybrid');
+    
+    showNotification('Image removed', 'info');
 }
 
 // Object detection

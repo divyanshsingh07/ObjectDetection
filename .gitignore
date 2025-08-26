@@ -1,0 +1,57 @@
+# Data files and directories
+data/
+vehicle dataset/
+image files/
+*.pt
+*.pth
+*.weights
+
+# Virtual environments
+venv/
+venv_new/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Model files (large files)
+*.onnx
+*.tflite
+*.pb
+*.dylib
+*.so
+
+# Temporary files
+*.tmp
+*.temp
+
+# Jupyter notebooks
+*.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
